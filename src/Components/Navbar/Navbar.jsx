@@ -1,21 +1,19 @@
 import logo from "../assets/logo.webp";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Context } from "../Provider/Provider";
 import { motion } from 'framer-motion';
 
 const Navbar = () => {
     const { user, handleLogOut } = useContext(Context);
-    const [showWelcome, setShowWelcome] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-    console.log(user)
-    console.log(showWelcome)
-    useEffect(() => {
-        if (user && user.email) {
-            setShowWelcome(true);
-        }
-    }, [user]);
+    
+    // useEffect(() => {
+    //     if (user && user.email) {
+    //         setShowWelcome(true);
+    //     }
+    // }, [user]);
 
     const links = (
         <div className="text-md flex-col xl:flex-row flex items-center justify-center ml-14 font-medium space-y-2 lg:space-x-8 lg:space-y-0">
@@ -121,7 +119,7 @@ const Navbar = () => {
                                     alt="User"
                                     onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
                                 />
-                              {  console.log(user.photoURL)}
+                            
 
                                 {/* Display Name and Logout Button - both visible on click */}
                                 {isProfileMenuOpen && (

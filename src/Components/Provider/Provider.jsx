@@ -31,21 +31,10 @@ export const Provider = ({ children }) => {
         signOut(auth);
     };
 
-    // Google LogIn
-    const handleGoogleLogin = async () => {
-        try {
-            const result = await signInWithPopup(auth, Googleprovider);
-            const userData = result.user;
-            setUser({
-                ...userData,
-                displayName: userData.displayName,
-                email: userData.email,
-                photoURL: userData.photoURL,
-            });
-        } catch (error) {
-            console.error("Error during Google login:", error);
-        }
-    };
+    const handleGoogleLogin = () => {
+        setLoading(true);
+        return signInWithPopup(auth, Googleprovider);
+    }
 
     // Update Profile
     const manageProfile = (name, image) => {

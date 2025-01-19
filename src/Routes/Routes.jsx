@@ -15,6 +15,8 @@ import AddProduct from '../Components/DashboardLayout/AddProduct';
 import MyProducts from '../Components/DashboardLayout/MyProducts';
 import ErrorPage from '../Components/Common/Error/ErrorPage';
 import ProductDetails from '../Components/Pages/ProductDetails/ProductDetails';
+import UpdateMyProduct from '../Components/DashboardLayout/UpdateMyProduct';
+import AllUsers from '../Components/Admin/AllUsers';
 
 export const router = createBrowserRouter([
     {
@@ -70,6 +72,15 @@ export const router = createBrowserRouter([
                         path: '/dashboard/my-products',
                         element: <MyProducts />
 
+                    }                    
+                    ,{
+                        path: '/dashboard/edit-product/:productId',
+                        element: <UpdateMyProduct />
+
+                    },
+                    {
+                        path: '/dashboard/manage-users',
+                        element: <AllUsers />
                     }
                 ]
 

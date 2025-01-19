@@ -17,6 +17,8 @@ import ErrorPage from '../Components/Common/Error/ErrorPage';
 import ProductDetails from '../Components/Pages/ProductDetails/ProductDetails';
 import UpdateMyProduct from '../Components/DashboardLayout/UpdateMyProduct';
 import AllUsers from '../Components/Admin/AllUsers';
+import ReviewQueue from '../Components/Moderator/ReviewQueue';
+import ReportedContents from '../Components/Moderator/ReportedContents';
 
 export const router = createBrowserRouter([
     {
@@ -41,7 +43,7 @@ export const router = createBrowserRouter([
                     </>
                 )
             },
-            
+
             {
 
                 path: "/product/:id",
@@ -72,8 +74,8 @@ export const router = createBrowserRouter([
                         path: '/dashboard/my-products',
                         element: <MyProducts />
 
-                    }                    
-                    ,{
+                    }
+                    , {
                         path: '/dashboard/edit-product/:productId',
                         element: <UpdateMyProduct />
 
@@ -81,6 +83,13 @@ export const router = createBrowserRouter([
                     {
                         path: '/dashboard/manage-users',
                         element: <AllUsers />
+                    },
+                    {
+                        path: '/dashboard/review-queue',
+                        element: <ReviewQueue />
+                    }, {
+                        path: '/dashboard/reported-content',
+                        element: <ReportedContents />
                     }
                 ]
 
@@ -93,7 +102,7 @@ export const router = createBrowserRouter([
                 element: (
                     <PrivateRoute>
 
-                        
+
                     </PrivateRoute>
                 )
             },

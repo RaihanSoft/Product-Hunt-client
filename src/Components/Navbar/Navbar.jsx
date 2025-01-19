@@ -8,12 +8,7 @@ const Navbar = () => {
     const { user, handleLogOut } = useContext(Context);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-    
-    // useEffect(() => {
-    //     if (user && user.email) {
-    //         setShowWelcome(true);
-    //     }
-    // }, [user]);
+
 
     const links = (
         <div className="text-md flex-col xl:flex-row flex items-center justify-center ml-14 font-medium space-y-2 lg:space-x-8 lg:space-y-0">

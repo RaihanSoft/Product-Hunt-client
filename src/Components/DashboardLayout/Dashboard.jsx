@@ -25,7 +25,6 @@ const Dashboard = () => {
           ]
         : isModerator
         ? [
-              { path: "/dashboard/my-profile", label: "My Profile", icon: <FiUser /> },
               { path: "/dashboard/review-queue", label: "Product Review Queue", icon: <FiCheckSquare /> }, // Moderator link
               { path: "/dashboard/reported-content", label: "Reported Contents", icon: <FiPackage /> }, // Moderator link
           ]

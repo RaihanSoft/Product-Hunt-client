@@ -137,7 +137,7 @@ const ProductDetails = () => {
                 Report
             </button>
 
-            <h2 className="mt-8 text-2xl">Reviews</h2>
+            <h2 className="mt-8 text-2xl">Reviews {reviews.length}</h2>
             {reviews.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {reviews.map((review, index) => (

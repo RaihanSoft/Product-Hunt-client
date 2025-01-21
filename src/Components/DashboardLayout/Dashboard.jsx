@@ -18,10 +18,10 @@ const Dashboard = () => {
 
     // Sidebar links based on roles
     const sidebarLinks = isAdmin
-        ? [
-              { path: "/dashboard/my-profile", label: "My Profile", icon: <FiUser /> },
-              { path: "/dashboard/manage-users", label: "Manage Users", icon: <FiPackage /> }, // Admin link
-              { path: "/dashboard/site-stats", label: "Site Statistics", icon: <FiCheckSquare /> }, // Admin link
+    ? [
+            { path: "/dashboard/site-stats", label: "Site Statistics", icon: <FiCheckSquare /> }, // Admin link
+            { path: "/dashboard/manage-users", label: "Manage Users", icon: <FiPackage /> }, // Admin link
+              { path: "/dashboard/manage-coupons", label: "Manage Coupons", icon: <FiUser /> },
           ]
         : isModerator
         ? [

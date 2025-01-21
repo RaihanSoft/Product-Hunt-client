@@ -19,6 +19,8 @@ import UpdateMyProduct from '../Components/DashboardLayout/UpdateMyProduct';
 import AllUsers from '../Components/Admin/AllUsers';
 import ReviewQueue from '../Components/Moderator/ReviewQueue';
 import ReportedContents from '../Components/Moderator/ReportedContents';
+import ManageCoupons from '../Components/Admin/ManageCoupons';
+import SiteStatistics from '../Components/Admin/SiteStatistics';
 
 export const router = createBrowserRouter([
     {
@@ -58,7 +60,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard',
-                element: <Dashboard />,
+                element:
+
+                    <PrivateRoute>
+                        <Dashboard />
+                    </PrivateRoute>,
                 children: [
                     {
                         path: '/dashboard/my-profile',
@@ -87,10 +93,20 @@ export const router = createBrowserRouter([
                     {
                         path: '/dashboard/review-queue',
                         element: <ReviewQueue />
-                    }, {
+                    },
+                    {
                         path: '/dashboard/reported-content',
                         element: <ReportedContents />
-                    }
+                    },
+                    {
+                        path: '/dashboard/manage-coupons',
+                        element: <ManageCoupons />
+                    },
+                    {
+                        path: '/dashboard/site-stats',
+                        element: <SiteStatistics />
+                    },
+
                 ]
 
             }

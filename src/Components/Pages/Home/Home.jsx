@@ -1,7 +1,7 @@
 
 import Banner from '../../Home/Banner/Banner'
 import TrandingProducts from '../../Home/TrandingProducts/TrandingProducts'
-import Reviews from '../../Home/Reviews/Reviews'
+import Coupons from '../../Home/Coupons/Coupons'
 import Achievements from '../../Home/Achievements/Achievements'
 import ProductSection from '../../Home/ProductSection/ProductSection'
 
@@ -13,7 +13,7 @@ const Home = () => {
       <Banner />
       <ProductSection />
       <TrandingProducts />
-      <Reviews />
+      <Coupons />
       <Achievements />
 
       {/* <Offers /> */}

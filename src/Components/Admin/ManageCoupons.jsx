@@ -14,60 +14,76 @@ const ManageCoupons = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
+    // Fetch Coupons on Component Mount
     useEffect(() => {
-        const fetchCoupons = async () => {
-            try {
-                const response = await axios.get("http://localhost:5000/coupons", {
-                    withCredentials: true,
-                });
-                setCoupons(Array.isArray(response.data) ? response.data : []);
-            } catch (error) {
-                console.error("Error fetching coupons:", error);
-            }
-        };
-
         fetchCoupons();
     }, []);
+
+    const fetchCoupons = async () => {
+        setLoading(true);
+        setError("");
+        try {
+            const response = await axios.get("http://localhost:5000/coupons", {
+                withCredentials: true,
+            });
+            setCoupons(Array.isArray(response.data) ? response.data : []);
+        } catch (err) {
+            setError("Failed to fetch coupons. Please try again.");
+            console.error("Error fetching coupons:", err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError("");
+    
         try {
             if (editMode) {
-                const response = await axios.put(`http://localhost:5000/coupons/${editCouponId}`, formData, {
-                    withCredentials: true,
-                });
-                setCoupons((prev) =>
-                    prev.map((coupon) => (coupon._id === editCouponId ? response.data : coupon))
+                // Update existing coupon
+                const response = await axios.put(
+                    `http://localhost:5000/coupons/${editCouponId}`,
+                    formData,
+                    { withCredentials: true }
                 );
-                setEditMode(false);
-                setEditCouponId(null);
+    
+                // Replace the updated coupon in the state
+                setCoupons((prev) =>
+                    prev.map((coupon) =>
+                        coupon._id === editCouponId ? response.data : coupon
+                    )
+                );
+    
+                alert("Coupon updated successfully!");
             } else {
-                const response = await axios.post("http://localhost:5000/coupons", formData, {
-                    withCredentials: true,
-                });
+                // Add new coupon
+                const response = await axios.post(
+                    "http://localhost:5000/coupons",
+                    formData,
+                    { withCredentials: true }
+                );
+    
+                // Add the new coupon to the state
                 setCoupons((prev) => [...prev, response.data]);
+    
                 alert("Coupon added successfully!");
             }
-            setFormData({
-                code: "",
-                expiryDate: "",
-                description: "",
-                discountAmount: "",
-            });
-        } catch (error) {
-            console.error("Error adding/updating coupon:", error);
-            setError("Error adding/updating coupon.");
+    
+            resetForm(); // Reset the form
+        } catch (err) {
+            setError("Failed to save coupon. Please try again.");
+            console.error("Error saving coupon:", err);
         } finally {
             setLoading(false);
         }
     };
+    
 
     const handleEdit = (coupon) => {
         setFormData({
@@ -81,17 +97,33 @@ const ManageCoupons = () => {
     };
 
     const handleDelete = async (couponId) => {
-        const confirm = window.confirm("Are you sure you want to delete this coupon?");
-        if (!confirm) return;
+        const confirmDelete = window.confirm("Are you sure you want to delete this coupon?");
+        if (!confirmDelete) return;
 
+        setLoading(true);
         try {
             await axios.delete(`http://localhost:5000/coupons/${couponId}`, {
                 withCredentials: true,
             });
             setCoupons((prev) => prev.filter((coupon) => coupon._id !== couponId));
-        } catch (error) {
-            console.error("Error deleting coupon:", error);
+            alert("Coupon deleted successfully!");
+        } catch (err) {
+            setError("Failed to delete coupon. Please try again.");
+            console.error("Error deleting coupon:", err);
+        } finally {
+            setLoading(false);
         }
+    };
+
+    const resetForm = () => {
+        setFormData({
+            code: "",
+            expiryDate: "",
+            description: "",
+            discountAmount: "",
+        });
+        setEditMode(false);
+        setEditCouponId(null);
     };
 
     return (
@@ -144,7 +176,7 @@ const ManageCoupons = () => {
                 </div>
                 <button
                     type="submit"
-                    className={`bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 ${loading ? 'cursor-not-allowed opacity-50' : ''}`}
+                    className={`bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 ${loading ? "cursor-not-allowed opacity-50" : ""}`}
                     disabled={loading}
                 >
                     {editMode ? "Update Coupon" : "Add Coupon"}
@@ -153,30 +185,37 @@ const ManageCoupons = () => {
 
             {error && <p className="text-red-500 mt-2">{error}</p>}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {coupons.map((coupon) => (
-                    <div key={coupon._id} className="border p-4 rounded-lg shadow-md">
-                        <h3 className="text-xl font-bold mb-2">{coupon.code}</h3>
-                        <p className="text-gray-600 mb-2">Expires on: {new Date(coupon.expiryDate).toLocaleDateString()}</p>
-                        <p className="text-gray-600 mb-2">{coupon.description}</p>
-                        <p className="text-gray-600">Discount: ${coupon.discountAmount}</p>
-                        <button
-                            onClick={() => handleEdit(coupon)}
-                            className="bg-yellow-500 text-white px-3 py-1 rounded-lg mr-2"
-                        >
-                            Edit
-                        </button>
-                        <button
-                            onClick={() => handleDelete(coupon._id)}
-                            className="bg-red-500 text-white px-3 py-1 rounded-lg"
-                        >
-                            Delete
-                        </button>
-                    </div>
-                ))}
-            </div>
+            {loading ? (
+                <p>Loading coupons...</p>
+            ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {coupons.map((coupon) => (
+                        <div key={coupon._id} className="border p-4 rounded-lg shadow-md">
+                            <h3 className="text-xl font-bold mb-2">{coupon.code}</h3>
+                            <p className="text-gray-600 mb-2">
+                                Expires on: {new Date(coupon.expiryDate).toLocaleDateString()}
+                            </p>
+                            <p className="text-gray-600 mb-2">{coupon.description}</p>
+                            <p className="text-gray-600">Discount: ${coupon.discountAmount}</p>
+                            <button
+                                onClick={() => handleEdit(coupon)}
+                                className="bg-yellow-500 text-white px-3 py-1 rounded-lg mr-2"
+                            >
+                                Edit
+                            </button>
+                            <button
+                                onClick={() => handleDelete(coupon._id)}
+                                className="bg-red-500 text-white px-3 py-1 rounded-lg"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };
 
 export default ManageCoupons;
+    

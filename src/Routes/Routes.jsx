@@ -21,6 +21,7 @@ import ReviewQueue from '../Components/Moderator/ReviewQueue';
 import ReportedContents from '../Components/Moderator/ReportedContents';
 import ManageCoupons from '../Components/Admin/ManageCoupons';
 import SiteStatistics from '../Components/Admin/SiteStatistics';
+import PaymentPage from '../Components/DashboardLayout/PaymentPage';
 
 export const router = createBrowserRouter([
     {
@@ -79,6 +80,11 @@ export const router = createBrowserRouter([
                     {
                         path: '/dashboard/my-products',
                         element: <MyProducts />
+
+                    } ,
+                                       {
+                        path: '/dashboard/payment',
+                        element: <PaymentPage />
 
                     }
                     , {

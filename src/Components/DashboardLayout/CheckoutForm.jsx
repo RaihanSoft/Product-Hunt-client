@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import UseAxiosSecure from '../../UseAxiosSecure/UseAxiosSecure'
 import { Context } from "../Provider/Provider";
+import { useNavigate } from "react-router-dom";
 
 const CheckOutForm = () => {
     const stripe = useStripe();
@@ -10,6 +11,7 @@ const CheckOutForm = () => {
     const axiosSecure = UseAxiosSecure();
     const [clientSecret, setClientSecret] = useState('');
     const { price, user } = useContext(Context);
+    const navigate = useNavigate()
 
     useEffect(() => {
         axiosSecure.post('/create-payment-intent', { price: price })
@@ -21,6 +23,8 @@ const CheckOutForm = () => {
                 setErrorMessage("Failed to create payment intent. Please try again.");
             });
     }, [axiosSecure, price]);
+
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -57,11 +61,11 @@ const CheckOutForm = () => {
                     },
                 },
             });
-
             if (confirmError) {
                 setErrorMessage(confirmError.message);
             } else if (paymentIntent.status === 'succeeded') {
                 alert("Payment successful!");
+                navigate('/dashboard/my-profile');
 
                 // Store payment details in the database
                 try {

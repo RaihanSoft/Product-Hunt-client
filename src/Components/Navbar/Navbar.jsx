@@ -30,15 +30,7 @@ const Navbar = () => {
             >
                 Products
             </NavLink>
-            {/* {user && <NavLink
-                className={({ isActive }) =>
-                    isActive ? "bg-black text-white p-1 px-2  rounded-md" : "hover:underline"
-                }
-                to="/myBookings"
-                onClick={() => setIsMenuOpen(false)}
-            >
-                My Bookings
-            </NavLink>} */}
+
 
             {
                 <NavLink
@@ -110,7 +102,7 @@ const Navbar = () => {
                                 {/* User Photo */}
                                 <img
                                     className="h-10 w-10 rounded-full cursor-pointer border-2 border-gray-300"
-                                    src={user.photoURL}
+                                    src={user?.photoURL}
                                     alt="User"
                                     onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
                                 />
@@ -119,7 +111,7 @@ const Navbar = () => {
                                 {/* Display Name and Logout Button - both visible on click */}
                                 {isProfileMenuOpen && (
                                     <div className="absolute top-12 left-1/2 transform -translate-x-1/2 w-28 bg-white border border-gray-300 rounded-lg shadow-lg text-center p-2">
-                                        <span className="block text-gray-700 font-medium">{user.displayName}</span>
+                                        <span className="block text-gray-700 font-medium">{user?.displayName}</span>
                                         <NavLink to="/dashboard">
                                             <h2 className="mt-2 cursor-pointer">Dashboard</h2>
                                         </NavLink>

@@ -1,53 +1,47 @@
 import { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { Context } from '../Provider/Provider';
+import useAxiosSecure from '../../UseAxiosSecure/UseAxiosSecure';
+import { Link } from 'react-router-dom';
 
 const MyProfile = () => {
-  const [user, setUser] = useState(null);
-  const { user: contextUser, price } = useContext(Context);
+  const { user, price } = useContext(Context);
   const [loading, setLoading] = useState(true);
-  const [isSubscribed, setIsSubscribed] = useState(false);
-  const [error, setError] = useState(null);  
+  const [payment, setPayment] = useState([]);
+  const [status, setStatus] = useState('');  // Add state to store status
 
-  const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    const fetchUserProfile = async () => {
+    const fetchProducts = async () => {
       try {
-        const response = await axios.get('/api/user/profile');
-        setUser(response.data);
-        setIsSubscribed(response.data.isSubscribed);
+        const response = await axiosSecure.get(`/myPayment?email=${user.email}`);
+        console.log("API response:", response.data); // Debugging
+        setPayment(response.data || []);
         setLoading(false);
       } catch (error) {
-        setError("Error fetching user profile.",error);
+        console.error('Error fetching products:', error);
         setLoading(false);
       }
     };
 
-    fetchUserProfile();
-  }, []);
-
-  const handleSubscribe = () => {
-    if (contextUser) {
-      navigate('/dashboard/payment', { state: { amount: 10 } });  // Pass subscription amount
-    } else {
-      setError("Please login to subscribe.");
+    if (user?.email) {
+      fetchProducts();
     }
-  };
+  }, [user, axiosSecure]);
+
+  useEffect(() => {
+    // Set the status once the payment data is fetched
+    if (payment.length > 0) {
+      const statusFromPayment = payment[0].status;
+      setStatus(statusFromPayment);
+    }
+  }, [payment]);
 
   if (loading) return <div>Loading...</div>;
 
   return (
     <div className="profile-container max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-3xl font-semibold text-indigo-700 mb-6">My Profile</h1>
-
-      {/* Error message display */}
-      {error && (
-        <div className="text-red-600 text-center mb-4">
-          {error}
-        </div>
-      )}
 
       <div className="profile-card bg-white rounded-lg shadow-lg p-6">
         {/* User Info */}
@@ -64,20 +58,18 @@ const MyProfile = () => {
         </div>
 
         {/* Subscription Button or Status */}
-        {!isSubscribed ? (
-          <button
-            onClick={handleSubscribe}
-            className="subscribe-button bg-indigo-600 text-white px-6 py-2 rounded-lg w-full hover:bg-indigo-700 transition-all"
-           
-          >
-            Subscribe for ${price}/month
+        {status === 'succeeded' ? (
+          <button className="bg-green-600 text-white px-6 py-2 rounded-lg w-full cursor-not-allowed" disabled>
+            Status: Verified
           </button>
         ) : (
-          <div className="mt-4">
-            <button className="bg-green-600 text-white px-6 py-2 rounded-lg w-full cursor-not-allowed" disabled>
-              Status: Verified
+          <Link to="/dashboard/payment" className="subscribe-button bg-indigo-600 text-white px-6 py-2 rounded-lg w-full hover:bg-indigo-700 transition-all">
+            <button
+              className="subscribe-button bg-indigo-600 text-white px-6 py-2 rounded-lg w-full hover:bg-indigo-700 transition-all"
+            >
+              Subscribe for ${price}/month
             </button>
-          </div>
+          </Link>
         )}
       </div>
     </div>

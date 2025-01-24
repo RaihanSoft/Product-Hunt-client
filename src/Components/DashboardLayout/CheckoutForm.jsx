@@ -14,7 +14,6 @@ const CheckOutForm = () => {
     useEffect(() => {
         axiosSecure.post('/create-payment-intent', { price: price })
             .then(res => {
-
                 setClientSecret(res.data.client_secret);
             })
             .catch(error => {
@@ -22,8 +21,6 @@ const CheckOutForm = () => {
                 setErrorMessage("Failed to create payment intent. Please try again.");
             });
     }, [axiosSecure, price]);
-
-    console.log(clientSecret)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -51,7 +48,7 @@ const CheckOutForm = () => {
             setErrorMessage(""); // Clear any previous error message
             console.log("[PaymentMethod]", paymentMethod);
 
-            const {error} = await stripe.confirmCardPayment(clientSecret, {
+            const { error: confirmError, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
                 payment_method: {
                     card: card,
                     billing_details: {
@@ -61,10 +58,26 @@ const CheckOutForm = () => {
                 },
             });
 
-            console.log(error.payment_intent)
+            if (confirmError) {
+                setErrorMessage(confirmError.message);
+            } else if (paymentIntent.status === 'succeeded') {
+                alert("Payment successful!");
 
+                // Store payment details in the database
+                try {
+                    await axiosSecure.post('/payments', {
+                        paymentIntentId: paymentIntent.id,
+                        amount: paymentIntent.amount,
+                        status: paymentIntent.status,
+                        userEmail: user?.email,
+                    });
+                } catch (error) {
+                    console.error("Error storing payment details:", error);
+                }
+            }
         }
     };
+
     return (
         <div>
             <form onSubmit={handleSubmit} className="space-y-4">

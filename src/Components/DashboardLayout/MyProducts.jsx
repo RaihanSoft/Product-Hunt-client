@@ -14,7 +14,7 @@ const MyProducts = () => {
         const fetchProducts = async () => {
             try {
                 const response = await axiosSecure.get(`/myProducts?email=${user.email}`);
-                console.log("API response:", response.data); // Debugging
+                console.log("API response:", response.data); 
                 setProducts(response.data || []);
                 setLoading(false);
             } catch (error) {

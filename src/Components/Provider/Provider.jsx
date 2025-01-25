@@ -13,10 +13,6 @@ export const Provider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [price, setprice] = useState(5000);  // Price for subscription
 
-
-    const [visa, setVisa] = useState({});
-
-
     // Register
     const handleRegister = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
@@ -103,8 +99,6 @@ export const Provider = ({ children }) => {
         user,
         setUser,
         loading,
-        visa,
-        setVisa,
         price,
         setprice
     };

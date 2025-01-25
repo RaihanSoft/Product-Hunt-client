@@ -10,11 +10,13 @@ import { HelmetProvider } from 'react-helmet-async'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <HelmetProvider>
+
       <Provider>
         <DarkModeProvider>
           <RouterProvider router={router} />
         </DarkModeProvider>
       </Provider>
+
     </HelmetProvider>
   </StrictMode>,
 )

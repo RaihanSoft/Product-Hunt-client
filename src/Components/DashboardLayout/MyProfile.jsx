@@ -8,7 +8,7 @@ const MyProfile = () => {
   const { user, price } = useContext(Context);
   const [loading, setLoading] = useState(true);
   const [payment, setPayment] = useState([]);
-  const [status, setStatus] = useState('');  // Add state to store status
+  const [status, setStatus] = useState(''); 
 
   const axiosSecure = useAxiosSecure();
 

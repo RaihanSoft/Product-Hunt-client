@@ -1,9 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Context } from "../Provider/Provider";
 import axios from "axios";
 import { WithContext as ReactTags } from "react-tag-input";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import useAxiosSecure from '../../UseAxiosSecure/UseAxiosSecure';
 
 const AddProduct = () => {
     const { user } = useContext(Context);
@@ -13,6 +14,37 @@ const AddProduct = () => {
     const [tags, setTags] = useState([]);
     const [externalLink, setExternalLink] = useState("");
     const navigate = useNavigate();
+
+    const [loading, setLoading] = useState(true);
+    const [payment, setPayment] = useState([]);
+    const [status, setStatus] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+  
+    const axiosSecure = useAxiosSecure();
+
+    useEffect(() => {
+        const fetchPayments = async () => {
+            try {
+                const response = await axiosSecure.get(`/myPayment?email=${user.email}`);
+                setPayment(response.data || []);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error fetching payments:', error);
+                setLoading(false);
+            }
+        };
+
+        if (user?.email) {
+            fetchPayments();
+        }
+    }, [user, axiosSecure]);
+
+    useEffect(() => {
+        if (payment.length > 0) {
+            const statusFromPayment = payment[0].status;
+            setStatus(statusFromPayment);
+        }
+    }, [payment]);
 
     const handleAddition = (tag) => {
         setTags([...tags, tag]);
@@ -26,16 +58,24 @@ const AddProduct = () => {
         e.preventDefault();
 
         if (!productImage) {
-            alert("Please upload a product image.");
+            setErrorMessage("Please upload a product image.");
             return;
         }
 
-        try {
+        // Check if user already has a product
+        const existingProductResponse = await axiosSecure.get(`/myProducts?email=${user.email}`);
+        if (existingProductResponse.data.length > 0 && status !== "succeeded") {
+            setErrorMessage("You cannot add more products until your payment is succeeded.");
+            return;
+        }
+
+        
             const formData = new FormData();
             formData.append("file", productImage);
             formData.append("upload_preset", "test-one");
             formData.append("cloud_name", "dvyv0emmq");
 
+            // Upload image to Cloudinary
             const cloudinaryResponse = await axios.post(
                 "https://api.cloudinary.com/v1_1/dvyv0emmq/image/upload",
                 formData
@@ -54,22 +94,29 @@ const AddProduct = () => {
                 timestamp: new Date(),
                 votes: [],
                 voteCount: 0,
-                status: "pending", // Set initial status to pending
+                status: "pending",
             };
 
-            const response = await axios.post(
-                "http://localhost:5000/products",
-                productData
-            );
-
+            // Add product to the database
+            const response = await axios.post("http://localhost:5000/products", productData);
             console.log(response);
             alert("Product added successfully!");
             navigate("/dashboard/my-products");
-        } catch (error) {
-            console.error("Error uploading image or saving product:", error);
-            alert("Error adding product. Please try again.");
-        }
+
+            // Fetch the updated payment status
+            const paymentResponse = await axiosSecure.get(`/myPayment?email=${user.email}`);
+            setPayment(paymentResponse.data || []);
+            if (paymentResponse.data?.[0]?.status !== "succeeded") {
+                setStatus(paymentResponse.data[0].status);
+                setErrorMessage("Your payment status has changed. You cannot add more products.");
+            } else {
+                setErrorMessage("");
+                navigate("/dashboard/my-products");
+            }
+     
     };
+
+    if (loading) return <div>Loading...</div>;
 
     if (!user) {
         return (
@@ -174,6 +221,10 @@ const AddProduct = () => {
                         className="input-field"
                     />
                 </div>
+
+                {errorMessage && (
+                    <p className="text-red-600 text-sm mt-2">{errorMessage}</p>
+                )}
 
                 <div className="text-center">
                     <motion.button

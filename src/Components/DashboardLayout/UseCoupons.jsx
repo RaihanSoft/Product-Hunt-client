@@ -17,7 +17,7 @@ const UseCoupons = () => {
             setLoading(true);
             setError("");
             try {
-                const response = await axios.get("http://localhost:5000/coupons", {
+                const response = await axios.get("https://product-hunt-server-green.vercel.app/coupons", {
                     withCredentials: true, // For auth token if required
                 });
                 setCoupons(

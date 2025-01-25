@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "mordern-hotel-booking-platform"
-  }
+    "dist": "product-hunt-9fc9a",
+    "default": "product-hunt-9fc9a"
+  },
+  "targets": {},
+  "etags": {}
 }

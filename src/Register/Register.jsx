@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import 'animate.css'; // Import animate.css
 import SocialLogin from "../SocialLogin/SocialLogin";
+import axios from "axios";
 
 const Register = () => {
   const [error, setError] = useState("");
@@ -57,7 +58,17 @@ const Register = () => {
     }
 
     handleRegister(email, password)
-      .then(() => {
+      .then((result) => {
+
+        const userInfo = {
+          email: result.user.email,
+          name: name
+        }
+        axios.post('https://product-hunt-server-green.vercel.app/users', userInfo)
+          .then(res => {
+            console.log(res.data);
+            navigate('/');
+          })
         // Update profile with name and image
         manageProfile(name, image);
 
@@ -105,7 +116,7 @@ const Register = () => {
               className="w-full px-4 py-3  animate__animated animate__bounceInLeft animate__fast   bg-[#2c183f] text-white border border-[#4e2553] rounded-lg shadow-inner focus:ring-2 focus:ring-[#7e4c9f] focus:outline-none"
             />
           </div>
-    
+
           {/* Photo URL */}
           <div className="mb-6">
             <label className="block text-sm font-semibold mb-2 text-[#e2c4f0]">Photo URL</label>

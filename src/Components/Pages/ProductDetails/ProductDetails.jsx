@@ -115,6 +115,11 @@ const ProductDetails = () => {
             <h1 className="text-3xl font-bold">{product.name}</h1>
             <img src={product.image} alt={product.name} className="my-4 w-full max-h-80 object-cover" />
             <p>{product.description}</p>
+            <p>
+                <a href={product.externalLink} target="_blank" rel="noopener noreferrer">
+                    <button className='btn'>Visit</button>
+                </a>
+            </p>
             <div>Tags: {product.tags?.join(', ')}</div>
             <div>Votes: {product.voteCount || 0}</div>
 

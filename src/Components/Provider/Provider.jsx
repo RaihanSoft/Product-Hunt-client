@@ -61,7 +61,7 @@ export const Provider = ({ children }) => {
                     });
     
                     const { data } = await axios.post(
-                        'http://localhost:5000/jwt',
+                        'https://product-hunt-server-green.vercel.app/jwt',
                         { email: currentUser?.email },
                         { withCredentials: true }
                     );
@@ -71,7 +71,7 @@ export const Provider = ({ children }) => {
                     setUser(null);
     
                     const { data } = await axios.post(
-                        'http://localhost:5000/logout',
+                        'https://product-hunt-server-green.vercel.app/logout',
                         {},
                         { withCredentials: true }
                     );

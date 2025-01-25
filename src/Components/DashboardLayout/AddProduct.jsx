@@ -98,7 +98,7 @@ const AddProduct = () => {
             };
 
             // Add product to the database
-            const response = await axios.post("http://localhost:5000/products", productData);
+            const response = await axios.post("https://product-hunt-server-green.vercel.app/products", productData);
             console.log(response);
             alert("Product added successfully!");
             navigate("/dashboard/my-products");

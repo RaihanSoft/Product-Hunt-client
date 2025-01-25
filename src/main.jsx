@@ -6,6 +6,7 @@ import { router } from './Routes/Routes'
 import { Provider } from './Components/Provider/Provider'
 import { DarkModeProvider } from '../src/Components/Common/DarkMood/DarkMood'
 import { HelmetProvider } from 'react-helmet-async'
+import { ToastContainer } from 'react-toastify'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -13,6 +14,7 @@ createRoot(document.getElementById('root')).render(
 
       <Provider>
         <DarkModeProvider>
+          <ToastContainer />
           <RouterProvider router={router} />
         </DarkModeProvider>
       </Provider>

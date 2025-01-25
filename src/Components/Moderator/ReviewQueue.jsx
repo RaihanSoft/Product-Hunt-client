@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../UseAxiosSecure/UseAxiosSecure";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ReviewQueue = () => {
     const [products, setProducts] = useState([]);
@@ -36,11 +37,17 @@ const ReviewQueue = () => {
 
     const handleAccept = (productId) => {
         updateProductStatus(productId, "accepted");
+        toast.success("accepted");
     };
 
     const handleReject = (productId) => {
         updateProductStatus(productId, "rejected");
+        toast.error("rejected");
     };
+    const handleFeature = ()=>{
+        toast.success("Feature added");
+    
+    }
 
     return (
         <div className="p-4">
@@ -81,7 +88,7 @@ const ReviewQueue = () => {
                                 </button>
                                 <button
                                     className="bg-yellow-500 text-white px-3 py-1 rounded mr-2"
-                                    
+                                    onClick={handleFeature}
                                 >
                                     Make Featured
                                 </button>

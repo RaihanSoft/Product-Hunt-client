@@ -15,7 +15,7 @@ const Coupons = () => {
       setLoading(true);
       setError("");
       try {
-        const response = await axios.get("http://localhost:5000/coupons", {
+        const response = await axios.get("https://product-hunt-server-green.vercel.app/coupons", {
           withCredentials: true, // For auth token if required
         });
         setCoupons(
@@ -63,16 +63,16 @@ const Coupons = () => {
               transition={{ duration: 0.8 }}
             >
               <h3 className="text-2xl font-bold text-blue-700 mb-2">
-                {coupon.code}
+                {coupon?.code}
               </h3>
               <p className="text-lg text-gray-700">
-                Discount: ${coupon.discountAmount}
+                Discount: ${coupon?.discountAmount}
               </p>
               <p className="text-sm text-gray-500">
                 Expires on:{" "}
-                {new Date(coupon.expiryDate).toLocaleDateString()}
+                {new Date(coupon?.expiryDate).toLocaleDateString()}
               </p>
-              <p className="text-gray-600 mt-2">{coupon.description}</p>
+              <p className="text-gray-600 mt-2">{coupon?.description}</p>
             </motion.div>
           ))}
         </Slider>

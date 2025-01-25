@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../Components/Provider/Provider";
 
 const axiosInstance = axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: "https://product-hunt-server-green.vercel.app",
     withCredentials: true,
 });
 

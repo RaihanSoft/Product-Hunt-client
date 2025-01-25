@@ -7,36 +7,53 @@ import UseCoupons from './UseCoupons';
 const MyProfile = () => {
   const { user, price } = useContext(Context);
   const [loading, setLoading] = useState(true);
-  const [payment, setPayment] = useState([]);
-  const [status, setStatus] = useState(''); 
+  const [status, setStatus] = useState('');
 
   const axiosSecure = useAxiosSecure();
 
+  // Polling interval (e.g., 5000ms = 5 seconds)
+  // const pollingInterval = 5000;
+
   useEffect(() => {
-    const fetchProducts = async () => {
+    // Fetch initial payment data
+    const fetchData = async () => {
       try {
-        const response = await axiosSecure.get(`/myPayment?email=${user.email}`);
-        console.log("API response:", response.data); // Debugging
-        setPayment(response.data || []);
+        if (user?.email) {
+          const response = await axiosSecure.get(`/myPayment?email=${user.email}`, {
+            headers: {
+              'Cache-Control': 'no-cache',
+            }
+          });
+          console.log("API response:", response.data);
+          setStatus(response.data[0]?.status); // Assuming the status is at index 0
+        }
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error('Error fetching data:', error);
         setLoading(false);
       }
     };
 
-    if (user?.email) {
-      fetchProducts();
-    }
-  }, [user, axiosSecure]);
+    // Initial fetch
+    fetchData();
 
-  useEffect(() => {
-    // Set the status once the payment data is fetched
-    if (payment.length > 0) {
-      const statusFromPayment = payment[0].status;
-      setStatus(statusFromPayment);
-    }
-  }, [payment]);
+    // Setting up EventSource for SSE
+    const eventSource = new EventSource('/events'); // This is the SSE endpoint
+    eventSource.onmessage = function(event) {
+      const paymentUpdate = JSON.parse(event.data);
+      console.log('Payment update from server:', paymentUpdate);
+
+      // Update the status if it changes
+      if (paymentUpdate.status !== status) {
+        setStatus(paymentUpdate.status);
+      }
+    };
+
+    // Clean up the EventSource when the component unmounts
+    return () => {
+      eventSource.close();
+    };
+  }, [user, axiosSecure, status]); // Dependencies are user, axiosSecure, and status
 
   if (loading) return <div>Loading...</div>;
 
@@ -64,7 +81,6 @@ const MyProfile = () => {
             Status: Verified
           </button>
         ) : (
-
           <div>
             <UseCoupons />
             <Link to="/dashboard/payment" className="subscribe-button bg-indigo-600 text-white px-6 py-2 rounded-lg w-full hover:bg-indigo-700 transition-all">
@@ -73,7 +89,6 @@ const MyProfile = () => {
               >
                 Subscribe for ${price}/month
               </button>
-
             </Link>
           </div>
         )}

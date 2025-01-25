@@ -23,7 +23,7 @@ const ManageCoupons = () => {
         setLoading(true);
         setError("");
         try {
-            const response = await axios.get("http://localhost:5000/coupons", {
+            const response = await axios.get("https://product-hunt-server-green.vercel.app/coupons", {
                 withCredentials: true,
             });
             setCoupons(Array.isArray(response.data) ? response.data : []);
@@ -48,7 +48,7 @@ const ManageCoupons = () => {
             if (editMode) {
                 // Update existing coupon
                 const response = await axios.put(
-                    `http://localhost:5000/coupons/${editCouponId}`,
+                    `https://product-hunt-server-green.vercel.app/coupons/${editCouponId}`,
                     formData,
                     { withCredentials: true }
                 );
@@ -64,7 +64,7 @@ const ManageCoupons = () => {
             } else {
                 // Add new coupon
                 const response = await axios.post(
-                    "http://localhost:5000/coupons",
+                    "https://product-hunt-server-green.vercel.app/coupons",
                     formData,
                     { withCredentials: true }
                 );
@@ -102,7 +102,7 @@ const ManageCoupons = () => {
 
         setLoading(true);
         try {
-            await axios.delete(`http://localhost:5000/coupons/${couponId}`, {
+            await axios.delete(`https://product-hunt-server-green.vercel.app/coupons/${couponId}`, {
                 withCredentials: true,
             });
             setCoupons((prev) => prev.filter((coupon) => coupon._id !== couponId));

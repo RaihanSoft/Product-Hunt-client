@@ -11,7 +11,7 @@ export const Provider = ({ children }) => {
     const Googleprovider = new GoogleAuthProvider();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [price, setprice] = useState(100);  // Price for subscription
+    const [price, setprice] = useState(5000);  // Price for subscription
 
 
     const [visa, setVisa] = useState({});
@@ -105,7 +105,8 @@ export const Provider = ({ children }) => {
         loading,
         visa,
         setVisa,
-        price
+        price,
+        setprice
     };
 
     return (

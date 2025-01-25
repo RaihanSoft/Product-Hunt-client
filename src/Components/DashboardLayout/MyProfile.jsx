@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { Context } from '../Provider/Provider';
 import useAxiosSecure from '../../UseAxiosSecure/UseAxiosSecure';
 import { Link } from 'react-router-dom';
+import UseCoupons from './UseCoupons';
 
 const MyProfile = () => {
   const { user, price } = useContext(Context);
@@ -63,13 +64,18 @@ const MyProfile = () => {
             Status: Verified
           </button>
         ) : (
-          <Link to="/dashboard/payment" className="subscribe-button bg-indigo-600 text-white px-6 py-2 rounded-lg w-full hover:bg-indigo-700 transition-all">
-            <button
-              className="subscribe-button bg-indigo-600 text-white px-6 py-2 rounded-lg w-full hover:bg-indigo-700 transition-all"
-            >
-              Subscribe for ${price}/month
-            </button>
-          </Link>
+
+          <div>
+            <UseCoupons />
+            <Link to="/dashboard/payment" className="subscribe-button bg-indigo-600 text-white px-6 py-2 rounded-lg w-full hover:bg-indigo-700 transition-all">
+              <button
+                className="subscribe-button bg-indigo-600 text-white px-6 py-2 rounded-lg w-full hover:bg-indigo-700 transition-all"
+              >
+                Subscribe for ${price}/month
+              </button>
+
+            </Link>
+          </div>
         )}
       </div>
     </div>

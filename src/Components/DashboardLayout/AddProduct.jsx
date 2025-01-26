@@ -129,7 +129,7 @@ const AddProduct = () => {
     return (
         <div className="add-product-container p-6 lg:p-12 bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-lg">
             <motion.h2
-                className="text-3xl lg:text-4xl font-bold text-center mb-8 text-indigo-600 dark:text-indigo-400"
+                className="text-3xl lg:text-4xl font-bold mb-8 text-indigo-600 dark:text-indigo-400"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -169,14 +169,14 @@ const AddProduct = () => {
                 </div>
 
                 <div className="form-group">
-                    <label className="block mb-2 text-gray-700 dark:text-gray-300 font-semibold">
+                    <label className="block mb-2  dark:text-gray-300 font-semibold">
                         Product Image
                     </label>
                     <input
                         type="file"
                         onChange={(e) => setProductImage(e.target.files[0])}
                         required
-                        className="input-field"
+                        className="input-field text-gary-700 dark:text-gray-300"
                     />
                 </div>
 
@@ -194,7 +194,7 @@ const AddProduct = () => {
                 </div>
 
                 <div className="form-group">
-                    <label className="block mb-2 text-gray-700 dark:text-gray-300 font-semibold">
+                    <label className="block mb-2 text-white font-semibold">
                         Tags
                     </label>
                     <ReactTags
@@ -229,7 +229,7 @@ const AddProduct = () => {
                 <div className="text-center">
                     <motion.button
                         type="submit"
-                        className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-lg transition-all"
+                        className="bg-[#684DF4]  text-white font-semibold px-6 py-3 rounded-lg transition-all"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                     >

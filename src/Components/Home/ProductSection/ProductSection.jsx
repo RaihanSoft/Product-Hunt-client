@@ -19,6 +19,8 @@ const ProductSection = () => {
           ...product,
           rank: index + 1,
           hasVoted: (product.votes || []).includes(user?.email),
+          isOwner: product.ownerEmail === user?.email,
+
         }));
         setProducts(updatedProducts || []);
         setLoading(false);
@@ -103,18 +105,21 @@ const ProductSection = () => {
               </div>
             </div>
             <div className="flex items-center gap-4">
-          
-              <button
-                onClick={() => handleUpvote(product._id)}
-                className={`flex items-center gap-1 px-3 py-2 rounded-full border transition ${
-                  product.hasVoted
-                    ? "bg-purple-100 text-[#684DF4] border-[#684DF4]"
-                    : "bg-gray-100 text-gray-500 border-gray-300"
-                }`}
-              >
-                <FaThumbsUp />
-                <span>{product.voteCount || 0}</span>
-              </button>
+              {product.isOwner ? (
+                <span className="text-sm text-gray-500 italic">Owner</span>
+              ) : (
+                <button
+                  onClick={() => handleUpvote(product._id)}
+                  className={`flex items-center gap-1 px-3 py-2 rounded-full border transition ${
+                    product.hasVoted
+                      ? "bg-purple-100 text-[#684DF4] border-[#684DF4]"
+                      : "bg-gray-100 text-gray-500 border-gray-300"
+                  }`}
+                >
+                  <FaThumbsUp />
+                  <span>{product.voteCount || 0}</span>
+                </button>
+              )}
             </div>
           </div>
         ))}

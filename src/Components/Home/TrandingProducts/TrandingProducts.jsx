@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../UseAxiosSecure/UseAxiosSecure";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../Provider/Provider";
 import { FaThumbsUp } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const ProductSection = () => {
   const [products, setProducts] = useState([]);
@@ -73,8 +74,8 @@ const ProductSection = () => {
   }
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-6">Trending Products</h2>
+    <div className="w-11/12 mx-auto mt-16">
+      <h2 className="text-3xl text-gray-600 font-bold mb-6">Trending Products</h2>
       <div className="flex flex-col gap-4">
         {products.map((product) => (
           <div
@@ -120,7 +121,7 @@ const ProductSection = () => {
                   onClick={() => handleUpvote(product._id)}
                   className={`flex items-center gap-1 px-3 py-2 rounded-full border transition ${
                     product.hasVoted
-                      ? "bg-red-100 text-red-500 border-red-500"
+                      ? "bg-purple-100 text-[#684DF4] border-[#684DF4]"
                       : "bg-gray-100 text-gray-500 border-gray-300"
                   }`}
                 >
@@ -134,12 +135,19 @@ const ProductSection = () => {
       </div>
       {/* Footer Button */}
       <div className="flex justify-center mt-6">
-        <button
-          onClick={() => navigate("/products")}
-          className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-        >
-          Show All Products
-        </button>
+        <motion.button
+                    whileHover={{
+                      scale: 1.02, // Slightly enlarge the button on hover
+                      boxShadow: "0px 10px 20px rgba(104, 77, 244, 0.3)", // Add a soft shadow on hover
+                    }}
+                    whileTap={{
+                      scale: 0.95, // Slightly shrink the button when tapped
+                    }}
+                    className="bg-[#684DF4] text-white px-2 md:px-4 py-2 rounded-lg text-sm font-semibold"
+                    onClick={() => navigate("/products")}
+                  >
+                     Show All Products
+                  </motion.button>
       </div>
     </div>
   );

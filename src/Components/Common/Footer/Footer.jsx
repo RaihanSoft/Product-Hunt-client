@@ -1,18 +1,19 @@
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import logo from "../../assets/ph.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-8">
+    <footer className="bg-gray-800 text-white py-8 mt-16 px-10 ">
       <div className="container mx-auto px-4">
         <div className="flex flex-col sm:flex-row sm:justify-between items-center">
           {/* Logo and Website Name */}
           <div className="text-center sm:text-left mb-4 sm:mb-0">
             <img
-              src="/path/to/logo.png"
+              src={logo}
               alt="Website Logo"
               className="w-24 h-auto mb-2 mx-auto sm:mx-0"
             />
-            <h2 className="text-xl font-semibold">Website Name</h2>
+            <h2 className="text-xl font-semibold  ">Products Hunt</h2>
           </div>
 
           {/* Contact Information */}

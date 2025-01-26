@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Slider from "react-slick";
 import { motion } from "framer-motion";
@@ -9,6 +9,7 @@ const Coupons = () => {
   const [coupons, setCoupons] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [copiedCoupon, setCopiedCoupon] = useState("");
 
   useEffect(() => {
     const fetchCoupons = async () => {
@@ -16,7 +17,7 @@ const Coupons = () => {
       setError("");
       try {
         const response = await axios.get("https://product-hunt-server-green.vercel.app/coupons", {
-          withCredentials: true, // For auth token if required
+          withCredentials: true,
         });
         setCoupons(
           response.data.filter(
@@ -34,6 +35,12 @@ const Coupons = () => {
     fetchCoupons();
   }, []);
 
+  const handleCopy = (code) => {
+    navigator.clipboard.writeText(code);
+    setCopiedCoupon(code);
+    setTimeout(() => setCopiedCoupon(""), 2000);
+  };
+
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -45,8 +52,8 @@ const Coupons = () => {
   };
 
   return (
-    <div className="mt-8 p-4">
-      <h2 className="text-2xl font-bold text-center mb-6">
+    <div className="w-11/12 mx-auto mt-16">
+      <h2 className="text-3xl text-gray-600 font-bold mb-6">
         {loading ? "Loading Coupons..." : "Valid Coupons"}
       </h2>
 
@@ -57,22 +64,38 @@ const Coupons = () => {
           {coupons.map((coupon) => (
             <motion.div
               key={coupon._id}
-              className="bg-blue-100 p-6 rounded-lg shadow-md text-center"
+              className="bg-[#E1EAFF] flex flex-col md:flex-row justify-between items-center p-6 md:p-10 rounded-lg shadow-md relative"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h3 className="text-2xl font-bold text-blue-700 mb-2">
-                {coupon?.code}
-              </h3>
-              <p className="text-lg text-gray-700">
-                Discount: ${coupon?.discountAmount}
-              </p>
-              <p className="text-sm text-gray-500">
-                Expires on:{" "}
-                {new Date(coupon?.expiryDate).toLocaleDateString()}
-              </p>
-              <p className="text-gray-600 mt-2">{coupon?.description}</p>
+              {/* Left Side */}
+              <div className="flex-1 text-left mb-4 md:mb-0">
+                <h3 className="text-2xl font-bold text-black mb-2">
+                  {coupon.discountAmount}% OFF
+                  <p className="text-lg text-gray-700">on your First Subscription</p>
+                </h3>
+                <p className="text-lg font-bold text-gray-600">
+                  Use by: {new Date(coupon.expiryDate).toLocaleDateString()}
+                </p>
+                <p className="text-xl font-semibold text-gray-600 mt-2 md:w-1/2 ">
+                {coupon.description}
+                </p>
+              </div>
+
+              {/* Right Side */}
+              <div className="flex-1 text-right">
+                <p className="text-xl font-bold text-gray-900">{coupon.code}</p>
+                <button
+                  onClick={() => handleCopy(coupon.code)}
+                  className="mt-4 bg-[#684DF4] text-white px-4 py-2 rounded-md text-sm"
+                >
+                  {copiedCoupon === coupon.code ? "Copied!" : "Copy Code"}
+                </button>
+              </div>
+
+              {/* Dotted Line */}
+              <div className="absolute top-0 bottom-0 left-1/2 border-dashed border-l-2 border-gray-500 hidden md:block"></div>
             </motion.div>
           ))}
         </Slider>

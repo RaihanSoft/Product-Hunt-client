@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../../UseAxiosSecure/UseAxiosSecure";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../Provider/Provider";
-import { FaCommentDots, FaThumbsUp } from "react-icons/fa";
+import {  FaThumbsUp } from "react-icons/fa";
 
 const ProductSection = () => {
   const [products, setProducts] = useState([]);
@@ -67,8 +67,8 @@ const ProductSection = () => {
   }
 
   return (
-    <div className="p-6  ">
-      <h2 className="text-2xl font-bold mb-6">Featured Products</h2>
+    <div className=" w-11/12 mx-auto">
+      <h2 className="text-3xl text-gray-600 font-bold mb-6">Featured Products</h2>
       <div className="flex flex-col gap-4">
         {products.map((product) => (
           <div
@@ -103,15 +103,12 @@ const ProductSection = () => {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-1 text-gray-500">
-                <FaCommentDots />
-                <span>{product.commentCount || 0}</span>
-              </div>
+          
               <button
                 onClick={() => handleUpvote(product._id)}
                 className={`flex items-center gap-1 px-3 py-2 rounded-full border transition ${
                   product.hasVoted
-                    ? "bg-red-100 text-red-500 border-red-500"
+                    ? "bg-purple-100 text-[#684DF4] border-[#684DF4]"
                     : "bg-gray-100 text-gray-500 border-gray-300"
                 }`}
               >

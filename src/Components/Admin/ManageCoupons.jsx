@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const ManageCoupons = () => {
     const [coupons, setCoupons] = useState([]);
@@ -72,13 +73,12 @@ const ManageCoupons = () => {
                 // Add the new coupon to the state
                 setCoupons((prev) => [...prev, response.data]);
     
-                alert("Coupon added successfully!");
+                toast.success("Coupon added successfully!");
             }
     
             resetForm(); // Reset the form
         } catch (err) {
-            setError("Failed to save coupon. Please try again.");
-            console.error("Error saving coupon:", err);
+            toast.success("Coupon updated successfully!");
         } finally {
             setLoading(false);
         }

@@ -1,6 +1,6 @@
 # Modern Hotel Booking Platform
 
-[Live Site URL](https://your-live-site-url.com)
+[Live Site URL](https://product-hunt-9fc9a.web.app/)
 
 ## Features
 

@@ -98,9 +98,9 @@ const SiteStatistics = () => {
                 <p className="text-lg font-semibold text-gray-700 hover:text-blue-500 transition-all duration-300 transform hover:scale-105">
                     <span className="text-indigo-600">Pending Products:</span> {data.pendingProducts}
                 </p>
-                <p className="text-lg font-semibold text-gray-700 hover:text-blue-500 transition-all duration-300 transform hover:scale-105">
+                {/* <p className="text-lg font-semibold text-gray-700 hover:text-blue-500 transition-all duration-300 transform hover:scale-105">
                     <span className="text-indigo-600">Reviews:</span> {data.reviews}
-                </p>
+                </p> */}
                 <p className="text-lg font-semibold text-gray-700 hover:text-blue-500 transition-all duration-300 transform hover:scale-105">
                     <span className="text-indigo-600">Users:</span> {data.users}
                 </p>

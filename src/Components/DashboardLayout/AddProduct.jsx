@@ -5,6 +5,7 @@ import { WithContext as ReactTags } from "react-tag-input";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import useAxiosSecure from '../../UseAxiosSecure/UseAxiosSecure';
+import { toast } from 'react-toastify';
 
 const AddProduct = () => {
     const { user } = useContext(Context);
@@ -100,7 +101,7 @@ const AddProduct = () => {
             // Add product to the database
             const response = await axios.post("https://product-hunt-server-green.vercel.app/products", productData);
             console.log(response);
-            alert("Product added successfully!");
+            toast.success("Product added successfully!");
             navigate("/dashboard/my-products");
 
             // Fetch the updated payment status

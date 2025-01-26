@@ -139,7 +139,7 @@ const ProductSection = () => {
                         >
                             {product.name}
                         </h3>
-                        <p className="mb-4">{product.description}</p>
+                        <p className="mb-4 h-[160px] ">{product.description}</p>
                         <div className="flex justify-between items-center">
                             <button
                                 onClick={() => handleUpvote(product._id)}

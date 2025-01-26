@@ -89,7 +89,7 @@ const Navbar = () => {
                                             className="mt-2 px-2 py-1 bg-[#684DF4] text-white rounded-md"
                                         >
                                             Log-Out
-                                        </button>
+                                        </button>                                     
                                     </div>
                                 )}
                             </div>

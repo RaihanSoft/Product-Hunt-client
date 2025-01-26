@@ -67,7 +67,7 @@ const ProductSection = () => {
   }
 
   return (
-    <div className="p-6">
+    <div className="p-6  ">
       <h2 className="text-2xl font-bold mb-6">Featured Products</h2>
       <div className="flex flex-col gap-4">
         {products.map((product) => (

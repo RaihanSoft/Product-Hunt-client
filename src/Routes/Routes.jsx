@@ -34,6 +34,9 @@ export const router = createBrowserRouter([
                 path: "/",
                 element: (
                     <>
+                        <Helmet>
+                            <title>Home-Product Hunt</title>
+                        </Helmet>
                         <Home />
                     </>
                 )
@@ -42,6 +45,10 @@ export const router = createBrowserRouter([
                 path: '/products',
                 element: (
                     <>
+
+                        <Helmet>
+                            <title>Products</title>
+                        </Helmet>
                         <Products />
                     </>
                 )
@@ -53,6 +60,11 @@ export const router = createBrowserRouter([
                 element: (
                     <>
 
+                        <>
+                            <Helmet>
+                                <title>Details</title>
+                            </Helmet>
+                        </>
                         <ProductDetails />
                     </>
 
@@ -62,55 +74,131 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element:
-
-                    <PrivateRoute>
-                        <Dashboard />
-                    </PrivateRoute>,
+                    <>
+                        <Helmet>
+                            <title>Dashboard</title>
+                        </Helmet>
+                        <PrivateRoute>
+                            <Dashboard />
+                        </PrivateRoute>
+                    </>,
                 children: [
                     {
                         path: '/dashboard/my-profile',
-                        element: <MyProfile />
+                        element:
+
+                            <>
+                                <Helmet>
+                                    <title>Profile</title>
+                                </Helmet>
+                                <MyProfile />
+                            </>
+
 
                     },
                     {
                         path: '/dashboard/add-product',
-                        element: <AddProduct />
+                        element:
+
+                            <>
+                                <Helmet>
+                                    <title>Add Products</title>
+                                </Helmet>
+                                <AddProduct />
+                            </>
+
 
                     },
                     {
                         path: '/dashboard/my-products',
-                        element: <MyProducts />
+                        element:
+                            <>
+                                <Helmet>
+                                    <title>My Products</title>
+                                </Helmet>
+                                <MyProducts />
+                            </>
 
-                    } ,
-                                       {
+
+                    },
+                    {
                         path: '/dashboard/payment',
-                        element: <PaymentPage />
+                        element:
+
+                            <>
+                                <Helmet>
+                                    <title>Payment Page</title>
+                                </Helmet>
+                                <PaymentPage />
+                            </>
+
 
                     }
                     , {
                         path: '/dashboard/edit-product/:productId',
-                        element: <UpdateMyProduct />
+                        element:
+
+                            <>
+                                <Helmet>
+                                    <title>Update Products</title>
+                                </Helmet>
+                                <UpdateMyProduct />
+                            </>
+
+
 
                     },
                     {
                         path: '/dashboard/manage-users',
-                        element: <AllUsers />
+                        element:
+                            <>
+                                <Helmet>
+                                    <title>All Users</title>
+                                </Helmet>
+                                <AllUsers />
+                            </>
                     },
                     {
                         path: '/dashboard/review-queue',
-                        element: <ReviewQueue />
+                        element:
+                            <>
+                                <ReviewQueue />
+                                <Helmet>
+                                    <title>Review Queue</title>
+                                </Helmet>
+                            </>
+
                     },
                     {
                         path: '/dashboard/reported-content',
-                        element: <ReportedContents />
+                        element:
+                            <>
+                                <ReportedContents />
+                                <Helmet>
+                                    <title>Reported Contents </title>
+                                </Helmet>
+                            </>
+
                     },
                     {
                         path: '/dashboard/manage-coupons',
-                        element: <ManageCoupons />
+                        element:
+                            <>
+                                <ManageCoupons />
+                                <Helmet>
+                                    <title>Manage Coupons </title>
+                                </Helmet>
+                            </>
                     },
                     {
                         path: '/dashboard/site-stats',
-                        element: <SiteStatistics />
+                        element:
+                            <>
+                                <SiteStatistics />
+                                <Helmet>
+                                    <title>Statistics </title>
+                                </Helmet>
+                            </>
                     },
 
                 ]
@@ -133,7 +221,9 @@ export const router = createBrowserRouter([
                 element: (
                     <>
 
-
+                        <Helmet>
+                            <title>AboutUs </title>
+                        </Helmet>
                         <AboutUs />
 
                     </>
@@ -143,6 +233,9 @@ export const router = createBrowserRouter([
                 path: '/contact-us',
                 element: (
                     <>
+                        <Helmet>
+                            <title>ContactUs </title>
+                        </Helmet>
 
                         <ContactUs />
                     </>

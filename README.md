@@ -1,4 +1,5 @@
-# Modern Hotel Booking Platform
+# Products Hunt
+A platform to discover and share tech products with secure login, product management, voting, reviews, and admin analytics
 
 [Live Site URL](https://product-hunt-9fc9a.web.app/)
 

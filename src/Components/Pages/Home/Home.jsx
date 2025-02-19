@@ -19,8 +19,8 @@ const Home = () => {
       <TrandingProducts />
       <Coupons />
       <Testimonials />
-      {/* <FeaturedMakers />
-      <UpcomingLaunches />
+      <FeaturedMakers />
+      {/* <UpcomingLaunches />
       <ProductAnalytics />
       <ProductRecommendations /> */}
 

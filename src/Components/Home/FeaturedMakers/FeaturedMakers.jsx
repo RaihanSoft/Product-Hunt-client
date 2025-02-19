@@ -23,13 +23,12 @@ const makers = [
 
 const FeaturedMakers = () => {
   return (
-    <div className="bg-gray-100 py-12 px-6">
-      <div className="max-w-4xl mx-auto text-center">
+    <div className="bg-gray-100 py-12 px-6 w-11/12 mx-auto">
+      <div className="">
         <h2 className="text-3xl font-bold text-gray-900">Featured Makers</h2>
-        <p className="mt-2 text-lg text-gray-600">Meet the innovators shaping the future</p>
       </div>
 
-      <div className="mt-8 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 max-w-5xl mx-auto">
+      <div className="mt-8 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
         {makers.map((maker, index) => (
           <div
             key={index}
@@ -38,7 +37,7 @@ const FeaturedMakers = () => {
             <img
               src={maker.image}
               alt={maker.name}
-              className="mx-auto w-20 h-20 rounded-full border-4 border-gray-200"
+              className="mx-auto w-20 h-20 rounded-full border-4 border-blue-500"
             />
             <h3 className="mt-4 text-lg font-semibold text-gray-900">{maker.name}</h3>
             <p className="text-sm text-gray-500">{maker.role}</p>

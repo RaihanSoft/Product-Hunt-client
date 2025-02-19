@@ -47,7 +47,7 @@ const Testimonials = () => {
           <img
             src={testimonials[index].image}
             alt={testimonials[index].name}
-            className="mx-auto w-20 h-20 rounded-full border-4 border-gray-200"
+            className="mx-auto w-20 h-20 rounded-full border-blue-500 border-4"
           />
           <p className="mt-4 text-gray-700 italic">"{testimonials[index].feedback}"</p>
           <div className="flex justify-center mt-3">

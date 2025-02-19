@@ -21,8 +21,8 @@ const Home = () => {
       <Testimonials />
       <FeaturedMakers />
       <UpcomingLaunches />
-      {/* <ProductAnalytics />
-      <ProductRecommendations /> */}
+      <ProductAnalytics />
+      {/* <ProductRecommendations /> */}
 
 
 

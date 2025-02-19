@@ -25,13 +25,12 @@ const productAnalytics = [
 
 const ProductAnalytics = () => {
   return (
-    <div className="bg-gray-50 py-12 px-6">
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl font-bold text-gray-900">📊 Product Analytics</h2>
-        <p className="mt-2 text-lg text-gray-600">Check out the latest trends and upvotes on products</p>
+    <div className="bg-blue-50 py-12 px-6 w-11/12 mx-auto">
+      <div className="">
+        <h2 className="text-3xl font-bold text-gray-900">Product Analytics</h2>
       </div>
 
-      <div className="mt-8 grid lg:grid-cols-2 sm:grid-cols-1 gap-6 max-w-5xl mx-auto">
+      <div className="mt-8 grid lg:grid-cols-2 sm:grid-cols-1 gap-6">
         <div className="bg-white p-6 rounded-2xl shadow-md">
           <h3 className="text-xl font-semibold text-gray-900">Top Products by Upvotes</h3>
           <ul className="mt-4 space-y-3">

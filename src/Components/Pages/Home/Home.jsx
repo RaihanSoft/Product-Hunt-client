@@ -22,7 +22,7 @@ const Home = () => {
       <FeaturedMakers />
       <UpcomingLaunches />
       <ProductAnalytics />
-      {/* <ProductRecommendations /> */}
+      <ProductRecommendations />
 
 
 

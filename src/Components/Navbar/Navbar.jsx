@@ -10,7 +10,6 @@ const Navbar = () => {
 
     const menuRef = useRef(null);
     const profileMenuRef = useRef(null);
-
     useEffect(() => {
         // Close the profile menu if clicked outside of it
         const handleClickOutside = (event) => {
@@ -89,7 +88,7 @@ const Navbar = () => {
                                             className="mt-2 px-2 py-1 bg-[#684DF4] text-white rounded-md"
                                         >
                                             Log-Out
-                                        </button>                                     
+                                        </button>
                                     </div>
                                 )}
                             </div>

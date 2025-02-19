@@ -20,7 +20,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="contact-us-page container mx-auto p-6">
+    <div className="contact-us-page w-11/12 mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">Contact Us</h1>
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
@@ -65,7 +65,7 @@ const ContactUs = () => {
         <div className="flex items-center justify-between">
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-[#684DF4] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Send Message
           </button>

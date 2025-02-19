@@ -2,6 +2,7 @@ import logo from "../assets/ph.png";
 import { useContext, useRef, useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Context } from "../Provider/Provider";
+import DarkMood from "../Common/DarkMood/DarkMood"
 
 const Navbar = () => {
     const { user, handleLogOut } = useContext(Context);
@@ -62,6 +63,7 @@ const Navbar = () => {
 
 
                 <div className="flex items-center justify-center gap-4">
+                <div> <DarkMood /></div>
                     {/* User Section */}
                     <div className="flex items-center space-x-4">
                         {user && user?.email ? (
@@ -112,6 +114,7 @@ const Navbar = () => {
                             </NavLink>
                         </div>
                     )}
+                        
 
                     <div className="lg:hidden relative">
                         {/* Hamburger / Close Button */}

@@ -4,9 +4,9 @@ import './index.css'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './Routes/Routes'
 import { Provider } from './Components/Provider/Provider'
-import { DarkModeProvider } from '../src/Components/Common/DarkMood/DarkMood'
 import { HelmetProvider } from 'react-helmet-async'
 import { ToastContainer } from 'react-toastify'
+import { DarkModeProvider } from './Components/Common/DarkMood/DarkMood'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

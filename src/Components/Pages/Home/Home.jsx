@@ -20,8 +20,8 @@ const Home = () => {
       <Coupons />
       <Testimonials />
       <FeaturedMakers />
-      {/* <UpcomingLaunches />
-      <ProductAnalytics />
+      <UpcomingLaunches />
+      {/* <ProductAnalytics />
       <ProductRecommendations /> */}
 
 

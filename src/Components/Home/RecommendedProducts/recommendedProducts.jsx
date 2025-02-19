@@ -25,7 +25,7 @@ const ProductRecommendations = () => {
   return (
     <div className=" py-12 px-6 w-11/12 mx-auto">
       <div className="">
-        <h2 className="text-3xl font-bold text-gray-900">Product Recommendations</h2>
+        <h2 className="text-3xl font-bold">Product Recommendations</h2>
       </div>
 
       <div className="mt-8 grid md:grid-cols-3 sm:grid-cols-1 gap-6">

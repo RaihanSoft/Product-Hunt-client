@@ -37,9 +37,9 @@ const Testimonials = () => {
   };
 
   return (
-    <div className="bg-gray-100 py-12 px-4 w-11/12 mx-auto sm:px-6 lg:px-8">
+    <div className=" py-12 px-4 w-11/12 mx-auto sm:px-6 lg:px-8">
       <div className="">
-        <h2 className="text-3xl font-bold text-gray-900">What Our Users Say</h2>
+        <h2 className="text-3xl font-bold ">What Our Users Say</h2>
       </div>
 
       <div className="relative mt-8">

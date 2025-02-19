@@ -22,6 +22,7 @@ import ReportedContents from '../Components/Moderator/ReportedContents';
 import ManageCoupons from '../Components/Admin/ManageCoupons';
 import SiteStatistics from '../Components/Admin/SiteStatistics';
 import PaymentPage from '../Components/DashboardLayout/PaymentPage';
+import News from '../Components/Pages/News/News';
 
 export const router = createBrowserRouter([
     {
@@ -50,6 +51,18 @@ export const router = createBrowserRouter([
                             <title>Products</title>
                         </Helmet>
                         <Products />
+                    </>
+                )
+            },            
+            {
+                path: '/news',
+                element: (
+                    <>
+
+                        <Helmet>
+                            <title>News</title>
+                        </Helmet>
+                        <News />
                     </>
                 )
             },

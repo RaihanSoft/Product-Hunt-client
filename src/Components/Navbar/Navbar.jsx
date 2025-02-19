@@ -27,12 +27,15 @@ const Navbar = () => {
 
     const links = (
         <>
-            <ul className="flex text-lg font-semibold text-gray-900  ">
+            <ul className="flex text-md font-semibold text-gray-900  ">
                 <li className="px-4 py-2 hover:text-[#684DF4] ">
                     <NavLink to={'/'}>Home</NavLink>
                 </li>
                 <li className="px-4 py-2 hover:text-[#684DF4] ">
                     <NavLink to={'/products'}>Products</NavLink>
+                </li>
+                <li className="px-4 py-2 hover:text-[#684DF4] ">
+                    <NavLink to={'/news'}>News</NavLink>
                 </li>
                 <li className="px-4 py-2 hover:text-[#684DF4] ">
                     <NavLink to={'/about-us'}>About Us</NavLink>
@@ -63,7 +66,7 @@ const Navbar = () => {
 
 
                 <div className="flex items-center justify-center gap-4">
-                <div> <DarkMood /></div>
+                    <div> <DarkMood /></div>
                     {/* User Section */}
                     <div className="flex items-center space-x-4">
                         {user && user?.email ? (
@@ -83,7 +86,7 @@ const Navbar = () => {
                                     >
                                         <span className="block text-black font-bold">{user?.displayName}</span>
                                         <NavLink to="/dashboard">
-                                            <h2 className="font-semibold text-gray-90 mt-2 cursor-pointer hover:text-[#684DF4]">Dashboard</h2>
+                                            <h2 className="font-semibold text-black mt-2 cursor-pointer hover:text-[#684DF4]">Dashboard</h2>
                                         </NavLink>
                                         <button
                                             onClick={handleLogOut}
@@ -114,7 +117,7 @@ const Navbar = () => {
                             </NavLink>
                         </div>
                     )}
-                        
+
 
                     <div className="lg:hidden relative">
                         {/* Hamburger / Close Button */}

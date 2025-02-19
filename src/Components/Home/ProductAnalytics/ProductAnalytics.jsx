@@ -25,9 +25,9 @@ const productAnalytics = [
 
 const ProductAnalytics = () => {
   return (
-    <div className="bg-blue-50 py-12 px-6 w-11/12 mx-auto">
+    <div className=" py-12 px-6 w-11/12 mx-auto">
       <div className="">
-        <h2 className="text-3xl font-bold text-gray-900">Product Analytics</h2>
+        <h2 className="text-3xl font-bold">Product Analytics</h2>
       </div>
 
       <div className="mt-8 grid lg:grid-cols-2 sm:grid-cols-1 gap-6">

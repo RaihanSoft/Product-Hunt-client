@@ -2,13 +2,13 @@ import { motion } from 'framer-motion';
 
 const AboutUs = () => {
   return (
-    <section className="bg-gray-50 py-16 px-4 w-11/12 mx-auto">
+    <section className=" py-16 px-4 w-11/12 mx-auto">
       <div className="container mx-auto text-center">
-        <h2 className="text-4xl font-bold text-gray-900 mb-8">About Us</h2>
-        <p className="text-lg text-gray-600 mb-6">
+        <h2 className="text-4xl font-bold  mb-8">About Us</h2>
+        <p className="text-lg mb-6">
           Welcome to <span className="font-semibold text-indigo-600">Product Hunt</span>, your go-to platform for discovering, sharing, and upvoting the best new products in the market. Our mission is to connect product enthusiasts with the latest innovations and trends in the tech world.
         </p>
-        <p className="text-lg text-gray-600 mb-6">
+        <p className="text-lg mb-6">
           At <span className="font-semibold text-indigo-600">Product Hunt</span>, we believe in the power of community and the importance of staying updated with the latest products. Whether you're a tech enthusiast, a startup founder, or just someone looking for the next big thing, we've got you covered.
         </p>
 
@@ -44,7 +44,7 @@ const AboutUs = () => {
         </div>
 
         <div className="mt-12">
-          <p className="text-lg text-gray-600">
+          <p className="text-lg">
             Whether you're looking for the latest tech gadgets, innovative startups, or just want to stay updated with the latest trends, <span className="font-semibold text-indigo-600">Product Hunt</span> is the place for you. Join our community today and start discovering the best new products.
           </p>
         </div>

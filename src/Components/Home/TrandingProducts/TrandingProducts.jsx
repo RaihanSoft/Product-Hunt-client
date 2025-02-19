@@ -75,7 +75,7 @@ const ProductSection = () => {
 
   return (
     <div className="w-11/12 mx-auto mt-16">
-      <h2 className="text-3xl text-gray-600 font-bold mb-6">Trending Products</h2>
+      <h2 className="text-3xl font-bold mb-6">Trending Products</h2>
       <div className="flex flex-col gap-4">
         {products.map((product) => (
           <div
@@ -98,7 +98,7 @@ const ProductSection = () => {
                 >
                   {product.name}
                 </h3>
-                <p className="text-sm text-gray-500">{product.description}</p>
+                <p className="text-sm">{product.description}</p>
                 <div className="flex flex-wrap gap-2 mt-2">
                   {product.tags?.map((tag, index) => (
                     <span

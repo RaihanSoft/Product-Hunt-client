@@ -22,9 +22,9 @@ const ContactUs = () => {
   return (
     <div className="contact-us-page w-11/12 mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">Contact Us</h1>
-      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <form onSubmit={handleSubmit} className=" shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+          <label className="block text-sm font-bold mb-2" htmlFor="name">
             Name
           </label>
           <input
@@ -37,7 +37,7 @@ const ContactUs = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+          <label className="block text-sm font-bold mb-2" htmlFor="email">
             Email
           </label>
           <input
@@ -50,7 +50,7 @@ const ContactUs = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="message">
+          <label className="block text-sm font-bold mb-2" htmlFor="message">
             Message
           </label>
           <textarea

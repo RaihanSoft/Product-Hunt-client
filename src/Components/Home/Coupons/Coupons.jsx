@@ -53,7 +53,7 @@ const Coupons = () => {
 
   return (
     <div className="w-11/12 mx-auto mt-16 px-4">
-      <h2 className="text-3xl text-gray-600 font-bold mb-6">
+      <h2 className="text-3xl font-bold mb-6">
         {loading ? "Loading Coupons..." : "Valid Coupons"}
       </h2>
 

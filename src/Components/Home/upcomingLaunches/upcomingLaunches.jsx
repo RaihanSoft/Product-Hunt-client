@@ -23,9 +23,9 @@ const upcomingLaunches = [
 
 const UpcomingLaunches = () => {
   return (
-    <div className="bg-blue-50 py-12 px-6 w-11/12 mx-auto">
+    <div className=" py-12 px-6 w-11/12 mx-auto">
       <div className="">
-        <h2 className="text-3xl font-bold text-gray-900">Upcoming Launches</h2>
+        <h2 className="text-3xl font-bold">Upcoming Launches</h2>
       </div>
 
       <div className="mt-8 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">

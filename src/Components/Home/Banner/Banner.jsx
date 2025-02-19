@@ -16,10 +16,10 @@ const Banner = () => {
       ></div>
 
       {/* Content Section */}
-      <div className=" items-center absolute top-0 left-0 w-full h-full flex flex-col md:flex-row  justify-center px-8 md:px-16 lg:px-32 lg:-ml-16 text-black">
+      <div className=" items-center absolute top-0 left-0 w-full h-full flex flex-col md:flex-row  justify-center px-8 md:px-16 lg:px-32 lg:-ml-16">
         <div className="flex-1 lg:-mt-20 ">
           <motion.h1
-            className="text-4xl font-bold mb-4 text-black"
+            className="text-4xl font-bold mb-4"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
